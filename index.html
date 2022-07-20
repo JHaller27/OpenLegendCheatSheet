@@ -8,122 +8,148 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    function PageHeader(props) {
+      return <div className="page-header"><h1>{props.title}</h1></div>;
+    }
+
+    function Panel(props) {
+      const barePanel = (
+          <div className="panel panel-default">
+            <div className="panel-heading"><h3>{props.header}</h3></div>
+            <div className="panel-body">{props.children}</div>
+          </div>
+        );
+
+      if (props.grid === undefined) {
+        return barePanel;
+      }
+
+      return (
+        <div className={props.grid}>
+          {barePanel}
+        </div>
+      );
+    }
+
+    function PanelGroup(props) {
+      return (
+        <div className="panel-group panel panel-default">
+          <div className="panel-heading"><h3>{props.header}</h3></div>
+          <div className="panel-body">{props.children}</div>
+        </div>
+      );
+    }
+
+    function ListItem(props) {
+      return <li className="list-group-item">{props.name}</li>;
+    }
+
+    function List(props) {
+      return (
+        <ul className="list-group">
+          {props.items.map((item) => <ListItem name={item} key={item} />)}
+        </ul>
+      );
+    }
+
+    function Table(props) {
+      return (
+        <div className="table-responsive">
+
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1d4</td>
+                <td>1d6</td>
+                <td>1d8</td>
+                <td>1d10</td>
+                <td>2d6</td>
+                <td>2d8</td>
+                <td>2d10</td>
+                <td>3d8</td>
+                <td>3d10</td>
+                <td>4d8</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      );
+    }
+
+    function Attributes() {
+      return (
+        <PanelGroup header="Attributes">
+          <Panel header="Physical" grid="col-xs-12 col-sm-6 col-md-3">
+            <List items={["Agility", "Fortitude", "Might"]} />
+          </Panel>
+
+          <Panel header="Mental" grid="col-xs-12 col-sm-6 col-md-3">
+            <List items={["Learning", "Logic", "Perception", "Will"]} />
+          </Panel>
+
+          <Panel header="Social" grid="col-xs-12 col-sm-6 col-md-3">
+            <List items={["Deception", "Presuasion", "Presence"]} />
+          </Panel>
+
+          <Panel header="Extraordinary" grid="col-xs-12 col-sm-6 col-md-3">
+            <List items={["Alteration", "Creation", "Energy", "Entropy", "Influence", "Movement", "Prescience", "Protection"]} />
+          </Panel>
+        </PanelGroup>
+      );
+    }
+
+    function Dice() {
+      return (
+        <Panel header="Dice">
+          <Table />
+        </Panel>
+      );
+    }
+
+    function Root() {
+      return (
+        <>
+        <PageHeader title="Open Legend Cheatsheet" />
+        <Attributes />
+        <Dice />
+        </>
+      );
+    }
+
+    ReactDOM.render(<Root/>, document.getElementById('root'));
+  </script>
+
   <style>
     .container-fluid, .table th {
       text-align: center;
     }
   </style>
 </head>
+
 <body>
 
 <div class="container-fluid">
-  <div class="page-header"><h1>Open Legend Cheatsheet</h1></div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading"><h2>Dice</h2></div>
-    <div class="panel-body">
-      <div class="table-responsive">
-
-        <table class="table table-striped">
-          <thead>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-            <th>8</th>
-            <th>9</th>
-            <th>10</th>
-          </thead>
-          <tr>
-            <td>1d4</td>
-            <td>1d6</td>
-            <td>1d8</td>
-            <td>1d10</td>
-            <td>2d6</td>
-            <td>2d8</td>
-            <td>2d10</td>
-            <td>3d8</td>
-            <td>3d10</td>
-            <td>4d8</td>
-          </tr>
-        </table>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="panel-group panel panel-default">
-    <div class="panel-heading"><h3>Attributes</h3></div>
-
-    <div class="panel-body">
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4>Physical</h4></div>
-
-          <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item">Agility</li>
-              <li class="list-group-item">Fortitude</li>
-              <li class="list-group-item">Might</li>
-            </ul class="list-group">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4>Mental</h4></div>
-
-          <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item">Learning</li>
-              <li class="list-group-item">Logic</li>
-              <li class="list-group-item">Perception</li>
-              <li class="list-group-item">Will</li>
-            </ul class="list-group">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4>Social</h4></div>
-
-          <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item">Deception</li>
-              <li class="list-group-item">Presuasion</li>
-              <li class="list-group-item">Presence</li>
-            </ul class="list-group">
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-sm-6 col-md-3">
-        <div class="panel panel-default">
-          <div class="panel-heading"><h4>Extraordinary</h4></div>
-
-          <div class="panel-body">
-            <ul class="list-group">
-              <li class="list-group-item">Alteration</li>
-              <li class="list-group-item">Creation</li>
-              <li class="list-group-item">Energy</li>
-              <li class="list-group-item">Entropy</li>
-              <li class="list-group-item">Influence</li>
-              <li class="list-group-item">Movement</li>
-              <li class="list-group-item">Prescience</li>
-              <li class="list-group-item">Protection</li>
-            </ul class="list-group">
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
+  <div id="root"></div>
 </div>
 
 </body>

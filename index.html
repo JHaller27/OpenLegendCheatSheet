@@ -180,6 +180,35 @@
       );
     }
 
+    function DamagingAttacks() {
+      return (
+        <>
+          <Panel header="Damage dealt" grid={{sm: 6}}>
+            <b>Attack roll</b> - <b>Target defense</b> (min 3)
+            <br/>
+            <b>≥10</b> damage is an <b>exceptional success</b>
+            <List items={[
+              <span>
+                <b>Trigger bane</b> w/ PL ≤ attacking attribute
+                <br/>
+                <b>Attack roll</b> must exceed defense <i>for that bane</i>
+              </span>,
+              <span>Disrupt concentration</span>
+            ]}>
+            </List>
+          </Panel>
+
+          <Panel header="Non-physical attack range" grid={{sm: 6}}>
+            <Table bodyRows={[
+              [<b>Attribute Score</b>, "1-3", "4-6", "7-9"],
+              [<b>Range</b>, "25'", "50'", "75'"],
+            ]}
+            />
+          </Panel>
+        </>
+      );
+    }
+
     function Actions() {
       const sizing = {sm: 4, md: 3};
 
@@ -211,6 +240,7 @@
         <CollapsiblePanel header="Attributes"><Attributes /></CollapsiblePanel>
         <CollapsiblePanel header="Attribute Dice"><Dice /></CollapsiblePanel>
         <CollapsiblePanel header="Actions"><Actions /></CollapsiblePanel>
+        <CollapsiblePanel header="Damaging Attacks"><DamagingAttacks /></CollapsiblePanel>
         <CollapsiblePanel header="Multi-Targeting"><MultiTarget /></CollapsiblePanel>
         <CollapsiblePanel header="Boon Challenge Rating"><BoonCR /></CollapsiblePanel>
         </>

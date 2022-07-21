@@ -29,8 +29,15 @@
         return barePanel;
       }
 
+      let gridClasses = [];
+      for (let [key, val] of Object.entries(props.grid)) {
+        gridClasses.push(`col-${key}-${val}`);
+      }
+
+      const gridClassNames = gridClasses.join(' ');
+
       return (
-        <div className={props.grid}>
+        <div className={gridClassNames}>
           {barePanel}
         </div>
       );
@@ -40,6 +47,11 @@
       const id = props.header.replaceAll(' ', '-');
       const hrefId = "#" + id;
 
+      let collapseClassName = "panel-collapse collapse";
+      if (props.expand) {
+        collapseClassName += " in";
+      }
+
       return (
         <div className="panel-group">
           <div className="panel panel-default">
@@ -48,7 +60,7 @@
                 <a data-toggle="collapse" href={hrefId}>{props.header}</a>
               </h3>
             </div>
-            <div id={id} className="panel-collapse collapse in">
+            <div id={id} className={collapseClassName}>
               <div className="panel-body">{props.children}</div>
             </div>
           </div>
@@ -115,21 +127,23 @@
     }
 
     function Attributes() {
+      const sizing = {sm: 6, md: 3};
+
       return (
         <>
-          <Panel header="Physical" grid="col-sm-6 col-md-3">
+          <Panel header="Physical" grid={sizing}>
             <List items={["Agility", "Fortitude", "Might"]} />
           </Panel>
 
-          <Panel header="Mental" grid="col-sm-6 col-md-3">
+          <Panel header="Mental" grid={sizing}>
             <List items={["Learning", "Logic", "Perception", "Will"]} />
           </Panel>
 
-          <Panel header="Social" grid="col-sm-6 col-md-3">
+          <Panel header="Social" grid={sizing}>
             <List items={["Deception", "Presuasion", "Presence"]} />
           </Panel>
 
-          <Panel header="Extraordinary" grid="col-sm-6 col-md-3">
+          <Panel header="Extraordinary" grid={sizing}>
             <List items={["Alteration", "Creation", "Energy", "Entropy", "Influence", "Movement", "Prescience", "Protection"]} />
           </Panel>
         </>

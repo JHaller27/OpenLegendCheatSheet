@@ -174,12 +174,37 @@
       );
     }
 
+    function Actions() {
+      const sizing = {sm: 4, md: 3};
+
+      return (
+          <>
+          <Panel header="Major Actions" grid={sizing}>
+            <List items={["Damaging attack", "Bane attack", "Invoke boon", "Assist ally", "Extra move"]} />
+          </Panel>
+
+          <Panel header="Minor Actions" grid={sizing}>
+            <List items={["Opportunity attack", "Sustain boon", "Draw/stow weapon", "Retrieve item", "Perception", "Learning", "Open door/container"]} />
+          </Panel>
+
+          <Panel header="Focus Actions" grid={sizing}>
+            <List items={["Superior action", "Charge"]} />
+          </Panel>
+
+          <Panel header="Interrupt Actions" grid={sizing}>
+            <List items={["Defend", "Improvise"]} />
+          </Panel>
+          </>
+      );
+    }
+
     function Root() {
       return (
         <>
         <PageHeader title="Open Legend Cheatsheet" />
         <CollapsiblePanel header="Attributes"><Attributes /></CollapsiblePanel>
         <CollapsiblePanel header="Attribute Dice"><Dice /></CollapsiblePanel>
+        <CollapsiblePanel header="Actions"><Actions /></CollapsiblePanel>
         <CollapsiblePanel header="Multi-Targeting"><MultiTarget /></CollapsiblePanel>
         <CollapsiblePanel header="Boon Challenge Rating"><BoonCR /></CollapsiblePanel>
         </>

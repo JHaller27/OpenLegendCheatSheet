@@ -158,13 +158,19 @@
 
     function MultiTarget() {
       return (
-          <Table headerRows={[["Attack", "Disadvantage"]]} bodyRows={[
+          <>
+          <i>No penalty for 1 target, or 5' length.</i>
+          <br/>
+          <i>NOTE: Line length is 10'.</i>
+          <Table headerRows={[["Attack", "Disadvantage 1 per..."]]} bodyRows={[
             ["Melee", "# targets"],
-            ["Ranged", "# targets (max 5, w/in 25' square)"],
-            ["Cube", "1 per 5' length"],
-            ["Cone", "1 per 5' length"],
-            ["Line", "1 per 5'x10'x10'"],
+            ["Ranged*", "# targets (max 5)"],
+            ["Cube", "5' length"],
+            ["Cone", "5' length"],
+            ["Line", "5'W X 10'L X 10'H"],
           ]} />
+          <i>* all targets must be within a 25' square</i>
+          </>
       );
     }
 
@@ -178,23 +184,23 @@
       const sizing = {sm: 4, md: 3};
 
       return (
-          <>
-          <Panel header="Major Actions" grid={sizing}>
-            <List items={["Damaging attack", "Bane attack", "Invoke boon", "Assist ally", "Extra move"]} />
-          </Panel>
+        <>
+        <Panel header="Major Actions" grid={sizing}>
+          <List items={["Damaging attack", "Bane attack", "Invoke boon", "Assist ally", "Extra move"]} />
+        </Panel>
 
-          <Panel header="Minor Actions" grid={sizing}>
-            <List items={["Opportunity attack", "Sustain boon", "Draw/stow weapon", "Retrieve item", "Perception", "Learning", "Open door/container"]} />
-          </Panel>
+        <Panel header="Minor Actions" grid={sizing}>
+          <List items={["Opportunity attack", "Sustain boon", "Draw/stow weapon", "Retrieve item", "Perception", "Learning", "Open door/container"]} />
+        </Panel>
 
-          <Panel header="Focus Actions" grid={sizing}>
-            <List items={["Superior action", "Charge"]} />
-          </Panel>
+        <Panel header="Focus Actions" grid={sizing}>
+          <List items={["Superior action", "Charge"]} />
+        </Panel>
 
-          <Panel header="Interrupt Actions" grid={sizing}>
-            <List items={["Defend", "Improvise"]} />
-          </Panel>
-          </>
+        <Panel header="Interrupt Actions" grid={sizing}>
+          <List items={["Defend", "Improvise"]} />
+        </Panel>
+        </>
       );
     }
 

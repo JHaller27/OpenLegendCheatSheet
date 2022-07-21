@@ -78,37 +78,31 @@
     }
 
     function Table(props) {
+      function TableHeaderRow(rowProps) {
+        return (
+          <tr>
+            {rowProps.items.map((item) => <th>{item}</th>)}
+          </tr>
+        );
+      }
+
+      function TableBodyRow(rowProps) {
+        return (
+          <tr>
+            {rowProps.items.map((item) => <td>{item}</td>)}
+          </tr>
+        );
+      }
+
       return (
         <div className="table-responsive">
 
           <table className="table table-striped">
             <thead>
-              <tr>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
-                <th>5</th>
-                <th>6</th>
-                <th>7</th>
-                <th>8</th>
-                <th>9</th>
-                <th>10</th>
-              </tr>
+              {props.headerRows.map((hrow) => <TableHeaderRow items={hrow} />)}
             </thead>
             <tbody>
-              <tr>
-                <td>1d4</td>
-                <td>1d6</td>
-                <td>1d8</td>
-                <td>1d10</td>
-                <td>2d6</td>
-                <td>2d8</td>
-                <td>2d10</td>
-                <td>3d8</td>
-                <td>3d10</td>
-                <td>4d8</td>
-              </tr>
+              {props.bodyRows.map((brow) => <TableBodyRow items={brow} />)}
             </tbody>
           </table>
 
@@ -141,7 +135,7 @@
     function Dice() {
       return (
         <CollapsiblePanel header="Attribute Dice">
-          <Table />
+          <Table headerRows={[[1,2,3,4,5,6,7,8,9,10]]} bodyRows={[["1d4", "1d6", "1d8", "1d10", "2d6", "2d8", "2d10", "3d8", "3d10", "4d8"]]} />
         </CollapsiblePanel>
       );
     }

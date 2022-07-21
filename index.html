@@ -98,12 +98,16 @@
         <div className="table-responsive">
 
           <table className="table table-striped">
-            <thead>
-              {props.headerRows.map((hrow) => <TableHeaderRow items={hrow} />)}
-            </thead>
+            {(props.headerRows !== undefined && props.headerRows.length > 0) &&
+              <thead>
+                {props.headerRows.map((hrow) => <TableHeaderRow items={hrow} />)}
+              </thead>
+            }
+            {(props.bodyRows !== undefined && props.bodyRows.length > 0) &&
             <tbody>
               {props.bodyRows.map((brow) => <TableBodyRow items={brow} />)}
             </tbody>
+            }
           </table>
 
         </div>
@@ -140,12 +144,27 @@
       );
     }
 
+    function MultiTarget() {
+      return (
+        <CollapsiblePanel header="Multi-Targeting">
+          <Table headerRows={[["Attack", "Disadvantage"]]} bodyRows={[
+            ["Melee", "# targets"],
+            ["Ranged", "# targets (max 5, w/in 25' square)"],
+            ["Cube", "1 per 5' length"],
+            ["Cone", "1 per 5' length"],
+            ["Line", "1 per 5'x10'x10'"],
+          ]} />
+        </CollapsiblePanel>
+      );
+    }
+
     function Root() {
       return (
         <>
         <PageHeader title="Open Legend Cheatsheet" />
         <Attributes />
         <Dice />
+        <MultiTarget />
         </>
       );
     }

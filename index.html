@@ -37,7 +37,7 @@
     }
 
     function CollapsiblePanel(props) {
-      const id = props.header;
+      const id = props.header.replace(' ', '-');
       const hrefId = "#" + id;
 
       return (
@@ -140,7 +140,7 @@
 
     function Dice() {
       return (
-        <CollapsiblePanel header="Dice">
+        <CollapsiblePanel header="Attribute Dice">
           <Table />
         </CollapsiblePanel>
       );

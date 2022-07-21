@@ -81,7 +81,7 @@
       function TableHeaderRow(rowProps) {
         return (
           <tr>
-            {rowProps.items.map((item) => <th>{item}</th>)}
+            {rowProps.items.map((item) => <th key={item}>{item}</th>)}
           </tr>
         );
       }
@@ -89,7 +89,7 @@
       function TableBodyRow(rowProps) {
         return (
           <tr>
-            {rowProps.items.map((item) => <td>{item}</td>)}
+            {rowProps.items.map((item) => <td key={item}>{item}</td>)}
           </tr>
         );
       }
@@ -100,13 +100,13 @@
           <table className="table table-striped">
             {(props.headerRows !== undefined && props.headerRows.length > 0) &&
               <thead>
-                {props.headerRows.map((hrow) => <TableHeaderRow items={hrow} />)}
+                {props.headerRows.map((hrow, i) => <TableHeaderRow items={hrow} key={i} />)}
               </thead>
             }
             {(props.bodyRows !== undefined && props.bodyRows.length > 0) &&
-            <tbody>
-              {props.bodyRows.map((brow) => <TableBodyRow items={brow} />)}
-            </tbody>
+              <tbody>
+                {props.bodyRows.map((brow, i) => <TableBodyRow items={brow} key={i} />)}
+              </tbody>
             }
           </table>
 
